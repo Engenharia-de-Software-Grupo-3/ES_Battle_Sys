@@ -1,0 +1,42 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 55, in script call
+    call prepare_battle
+  File "game/battlesys/labels/prepare_battle.rpy", line 66, in script call
+    call turn_start
+  File "game/battlesys/labels/turn_start.rpy", line 7, in script call
+    call battle_menu
+  File "game/battlesys/labels/battle_menu.rpy", line 7, in script
+    python:
+  File "game/battlesys/labels/battle_menu.rpy", line 11, in <module>
+    skill_i = ((battleState.enemy_team_current_stats)[0]).attack_choice(battleState)
+  File "game/battlesys/classes/class_battle_state.rpy", line 22, in attack_choice
+    return self.attack_pattern(battle_state)
+AttributeError: 'Enemy_current_stats' object has no attribute 'attack_pattern'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 55, in script call
+    call prepare_battle
+  File "game/battlesys/labels/prepare_battle.rpy", line 66, in script call
+    call turn_start
+  File "game/battlesys/labels/turn_start.rpy", line 7, in script call
+    call battle_menu
+  File "game/battlesys/labels/battle_menu.rpy", line 7, in script
+    python:
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\ast.py", line 1138, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\python.py", line 1122, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/battlesys/labels/battle_menu.rpy", line 11, in <module>
+    skill_i = ((battleState.enemy_team_current_stats)[0]).attack_choice(battleState)
+  File "game/battlesys/classes/class_battle_state.rpy", line 22, in attack_choice
+    return self.attack_pattern(battle_state)
+AttributeError: 'Enemy_current_stats' object has no attribute 'attack_pattern'
+
+Windows-10-10.0.19041 AMD64
+Ren'Py 8.1.1.23060707
+CCbattleSys 1.0
+Wed Sep 13 00:59:47 2023

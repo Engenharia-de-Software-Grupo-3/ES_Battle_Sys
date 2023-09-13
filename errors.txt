@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/battlesys/labels/battle_menu.rpy", line 47: expected statement.
+    battleState.swap_enemy_head(i)
+                                  ^
+
+Ren'Py Version: Ren'Py 8.1.1.23060707
+Tue Sep 12 23:14:42 2023
