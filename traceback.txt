@@ -1,42 +1,42 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 55, in script call
-    call prepare_battle
-  File "game/battlesys/labels/prepare_battle.rpy", line 66, in script call
-    call turn_start
-  File "game/battlesys/labels/turn_start.rpy", line 7, in script call
-    call battle_menu
-  File "game/battlesys/labels/battle_menu.rpy", line 7, in script
-    python:
-  File "game/battlesys/labels/battle_menu.rpy", line 11, in <module>
-    skill_i = ((battleState.enemy_team_current_stats)[0]).attack_choice(battleState)
-  File "game/battlesys/classes/class_battle_state.rpy", line 22, in attack_choice
-    return self.attack_pattern(battle_state)
-AttributeError: 'Enemy_current_stats' object has no attribute 'attack_pattern'
+  File "renpy/common/00start.rpy", line 212, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 529, in script
+    python hide:
+  File "renpy/common/00keymap.rpy", line 529, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 540, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+AttributeError: Can't get attribute 'sunTrigger' on <renpy.python.StoreModule object at 0x000000000432c2e0>
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 55, in script call
-    call prepare_battle
-  File "game/battlesys/labels/prepare_battle.rpy", line 66, in script call
-    call turn_start
-  File "game/battlesys/labels/turn_start.rpy", line 7, in script call
-    call battle_menu
-  File "game/battlesys/labels/battle_menu.rpy", line 7, in script
-    python:
+  File "renpy/common/00start.rpy", line 212, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 529, in script
+    python hide:
   File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/battlesys/labels/battle_menu.rpy", line 11, in <module>
-    skill_i = ((battleState.enemy_team_current_stats)[0]).attack_choice(battleState)
-  File "game/battlesys/classes/class_battle_state.rpy", line 22, in attack_choice
-    return self.attack_pattern(battle_state)
-AttributeError: 'Enemy_current_stats' object has no attribute 'attack_pattern'
+  File "renpy/common/00keymap.rpy", line 529, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 540, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\loadsave.py", line 812, in load
+    roots, log = loads(log_data)
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\compat\pickle.py", line 100, in loads
+    return load(io.BytesIO(s))
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\compat\pickle.py", line 97, in load
+    return up.load()
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\compat\pickle.py", line 93, in find_class
+    return super().find_class(module, name)
+AttributeError: Can't get attribute 'sunTrigger' on <renpy.python.StoreModule object at 0x000000000432c2e0>
 
 Windows-10-10.0.19041 AMD64
 Ren'Py 8.1.1.23060707
 CCbattleSys 1.0
-Wed Sep 13 00:59:47 2023
+Thu Sep 14 23:42:11 2023

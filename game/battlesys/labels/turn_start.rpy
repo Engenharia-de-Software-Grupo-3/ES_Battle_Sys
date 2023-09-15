@@ -10,7 +10,7 @@ label victory_check:
     python:
         victory = True
         for e in battleState.enemy_team_current_stats:
-            if e is not None and e.alive:
+            if e is not None and e.enemy_hp > 0:
                 victory = False
     if victory:
         narrator "call battle_victory_label"
@@ -30,7 +30,7 @@ label check_enemy_change:
         eHead_hp = (battleState.enemy_team_current_stats[0]).enemy_hp
         if eHead_hp == 0:
             for i in range(1, 6, 1):
-                if (battleState.enemy_team_current_stats[i]) is not None and (battleState.enemy_team_current_stats[i]).alive:
+                if (battleState.enemy_team_current_stats[i]) is not None and (battleState.enemy_team_current_stats[i]).enemy_hp > 0:
                     battleState.swap_enemy_head(i)
                     enemy_change = True
                     break

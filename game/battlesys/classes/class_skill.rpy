@@ -4,9 +4,8 @@ init python:
         """
              Name
              Effect_sequence {
-                - Inverted
-                - Individual
-                - Sequencial
+                - Sequential -> Segundo efeito acontece se o primeiro acertar
+                - Inverted -> Segundo efeito acontece se o primeiro errar
              }
              Type
              Speed [-1..2]
@@ -17,5 +16,6 @@ init python:
             self.name = name
             self.type = type
             self.effect_list = effect_list
+            self.effect_sequence = effect_sequence
             self.speed = speed
             self.pic_sprite = pic_sprite

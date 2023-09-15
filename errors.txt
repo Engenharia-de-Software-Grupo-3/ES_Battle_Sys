@@ -2,9 +2,41 @@
 errors listed below, and try again.
 
 
-File "game/battlesys/labels/battle_menu.rpy", line 47: expected statement.
-    battleState.swap_enemy_head(i)
-                                  ^
+The label battle_menu is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 1:
+
+and File "game/battlesys/labels/menu_battle.rpy", line 1:
+label battle_menu:
+
+
+The label player_battle_menu_choice is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 3:
+
+and File "game/battlesys/labels/menu_battle.rpy", line 3:
+        menu player_battle_menu_choice:
+
+
+The label battle_skill_menu is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 34:
+
+and File "game/battlesys/labels/menu_battle.rpy", line 34:
+label battle_skill_menu:
+
+
+The label player_attack_choice is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 36:
+
+and File "game/battlesys/labels/menu_battle.rpy", line 36:
+    menu player_attack_choice:
+
+
+The label battle_change_menu is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 47:
+
+and File "game/battlesys/labels/menu_battle.rpy", line 47:
+label battle_change_menu:
+
+
+The label player_enemy_choice is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 54:
+
+and File "game/battlesys/labels/menu_battle.rpy", line 54:
+    menu player_enemy_choice:
+
 
 Ren'Py Version: Ren'Py 8.1.1.23060707
-Tue Sep 12 23:14:42 2023
+Thu Sep 14 23:34:49 2023
