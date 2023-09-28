@@ -52,11 +52,15 @@ init python:
             self.player_status_condition_dictionare = {}
 
             # Enemy team current stats
+            self.enemy_team_name = enemy_team.name
             self.enemy_team_current_stats = create_current_stats(enemy_team)
             self.enemy_team_passive = enemy_team.passive
 
+        # FUNCOES
+
         def swap_enemy_head(self, i):
             aux = self.enemy_team_current_stats[0]
+            aux.status_condition_dictionare = {}
             self.enemy_team_current_stats[0] = self.enemy_team_current_stats[i]
             self.enemy_team_current_stats[i] = aux
 
@@ -71,3 +75,15 @@ init python:
             if type in ((self.enemy_team_current_stats)[0]).type_boost_dictionare.keys(): 
                 saida = ((self.enemy_team_current_stats)[0]).type_boost_dictionare[type]
             return saida
+
+        def status_condition_downgrade(self, player_name):
+            conditions = []
+            for s in self.player_status_condition_dictionare.keys():
+                self.player_status_condition_dictionare[s] -= 1
+                if self.player_status_condition_dictionare[s] <= 0:
+                    conditions.append(s)
+            for venom in conditions:
+                saida = player_name + " is no longer affected by " + venom.name
+                self.player_status_condition_dictionare.pop(venom)
+                renpy.say('', saida)
+  

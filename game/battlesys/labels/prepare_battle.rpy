@@ -15,49 +15,62 @@ label prepare_battle:
         selfDmg50 = Status_effect(0, 'hp', '-', 50, 100)
         selfdmg25 = Status_effect(0, 'hp', '-', 25, 100)
         heal50 = Status_effect(0, 'hp', '+', 50, 100)
-        hitkill = Status_effect(1, 'hp', '*', 0, -1)
+        hitkill = Status_effect(1, 'hp', '*', 0, 25)
         fire_boost = Type_effect(0, fire, '+', 100)
 
         # Skill
-        heatVision = Skill('Heat Vision', 'Sequential', fire, [dmg50, dmg50, dmg50], 0, None)
-        frostBreath = Skill('Frost Breath', 'Sequential', water, [dmg50], 0, None)
-        sunCharge = Skill('Praise the Sun', 'Sequential', grass, [fire_boost], -1, None)
-        megaPunch = Skill("Serious Punch", 'Inverted', normal, [hitkill, selfDmg50], 1, None)
+        heatVision = Skill('Throw Objects', 'Sequential', fire, [dmg50, dmg50, dmg50], 0, None)
+        frostBreath = Skill('High level coffee', 'Sequential', water, [dmg50], 0, None)
+        sunCharge = Skill('Compile', 'Sequential', grass, [fire_boost], -1, None)
+        megaPunch = Skill("Dynamic Punch", 'Inverted', normal, [hitkill, selfDmg50], 1, None)
 
         punch = Skill('Punch', 'Sequential', normal, [dmg50], 0, None)
-        gun = Skill('Gun', 'Sequential', fire, [dmg50], 1, None)
+        gun = Skill('Gun', 'Sequential', fire, [dmg50, dmg50], 1, None)
         burrito = Skill('Burrito', 'Sequential', grass, [dmg50], 0, None)
 
         # Status_conditions
-        poison = Status_condition('Poison', 'Turn End', [selfdmg25])
-        podre = Status_condition_effect(1, '+', poison, 50)
+        def poison_effect(afflicted, battleState, battlePhase):
+            if afflicted == 'player':
+                battleState.player_hp -= 25
+                renpy.say('', '[battleState.player_name] is hurt by poison!')
+            elif afflicted == 'enemy':
+                ((battleState.enemy_team_current_stats)[0]).enemy_hp -= 25
+                renpy.say('', '[((battleState.enemy_team_current_stats)[0]).enemy_name] is hurt by poison!')
+
+        poison = Status_condition('Poison', 'Battle_End', poison_effect, 1)
+        podre = Status_condition_effect(1, '+', poison, 100)
         burrito.effect_list.append(podre)
 
         # Passives
-        def sunTrigger(x, y):
-            return True
+        def regen(battleState, y):
+            battleState.player_hp += 100
+            renpy.say('', "[battleState.player_name]'s HP was restored by [battleState.player_passive.name]")
 
-        underSun = Passive('Under the Sun', 'Turn End', sunTrigger, [heal50])
-        backstab = Passive('Backstab', 'Turn End', sunTrigger, [dmg50])
+        def backstab(battleState, y):
+            battleState.player_hp -= 100
+            renpy.say('', 'Enemy [battleState.enemy_team_passive.name] damaged [battleState.player_name]')
+
+        underSun = Passive('Under the Sun', 'Battle_End', regen)
+        backstab = Passive('Backstab', 'Battle_End', backstab)
 
         # Player
-        pxy = Sprite_info("superman", 0.1, 0.6)
-        player = Pc("Superman", normal, 1000, 100, 100, 250, underSun, pxy, [heatVision, frostBreath, sunCharge, megaPunch])
+        pxy = Sprite_info("java_battle", 0.3, 0.9, "java_attack", "java_dmg")
+        player = Pc("Java", normal, 1000, 100, 100, 100, underSun, pxy, [heatVision, frostBreath, sunCharge, megaPunch])
         
         # Enemys
-        e1xy = Sprite_info("redamongus", 0.9, 0.6)
-        e2xy = Sprite_info("mexigus", 0.9, 0.6)
-        e3xy = Sprite_info("amonguns", 0.9, 0.6)
+        e1xy = Sprite_info("redamongus", 0.9, 0.45, "atkamongus", "dmgamongus")
+        e2xy = Sprite_info("mexigus", 0.9, 0.45, "atkamongus", "dmgamongus")
+        e3xy = Sprite_info("amonguns", 0.85, 0.45, "atkamongus", "dmgamongus")
 
         def attackPattern(state):
             return 0
 
-        red = Enemy('Redongus', normal, 100, 50, 50, 100, [punch], e1xy, attackPattern)
-        yellow = Enemy('Mexicongus', grass, 100, 50, 50, 100, [burrito], e2xy, attackPattern)
-        blue = Enemy('Amonguns', fire, 100, 50, 50, 100, [gun], e3xy, attackPattern)
+        red = Enemy('Redongus', normal, 500, 50, 50, 100, [punch], e1xy, attackPattern)
+        yellow = Enemy('Mexicongus', grass, 500, 50, 50, 100, [burrito], e2xy, attackPattern)
+        blue = Enemy('Amonguns', fire, 500, 50, 50, 100, [gun], e3xy, attackPattern)
 
         # Enemy_team
-        enemyTeam = Enemy_team("Amongus", backstab, [red, yellow, blue, None, None, None], None)
+        enemyTeam = Enemy_team("The Skeld", backstab, [red, yellow, blue, None, None, None], None)
 
         # Battle_state
         battleState = Battle_state(player, enemyTeam)
@@ -65,20 +78,4 @@ label prepare_battle:
     call show_fighters
     show screen hp_bars_1v1
     call turn_start
-
-screen hp_bars_1v1:
-    vbox:
-        spacing 20
-        xalign (battleState.player_sprite_info.x_position - 0.05)
-        yalign (battleState.player_sprite_info.y_position + 0.1)
-        xmaximum 200
-        text battleState.player_name
-        bar value battleState.player_hp range battleState.original_player.hp
-
-    vbox:
-        spacing 20
-        xalign (((battleState.enemy_team_current_stats)[0]).enemy_sprite_info.x_position + 0.05)
-        yalign (((battleState.enemy_team_current_stats)[0]).enemy_sprite_info.y_position + 0.1)
-        xmaximum 200
-        text ((battleState.enemy_team_current_stats)[0]).enemy_name
-        bar value ((battleState.enemy_team_current_stats)[0]).enemy_hp range ((battleState.enemy_team_current_stats)[0]).original_enemy.hp
+    return

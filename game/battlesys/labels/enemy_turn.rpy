@@ -56,13 +56,17 @@ label bp_enemy_turn:
         $ i += 1
         if (i == effect_list_size):
             $ inLoop = False
-        elif (((not battlePhase.player_attack_hit) and is_sequential) or (battlePhase.player_attack_hit and (not is_sequential))):
+        elif (((not battlePhase.enemy_attack_hit) and is_sequential) or (battlePhase.enemy_attack_hit and (not is_sequential))):
             $ inLoop = False
         else:
             $ inLoop = True
     # End turn -----------------------------------------------------------------------------------
     if battlePhase.phase == 2:
-        $ battlePhase.current_stage = 'Turn_end'
+        $ battlePhase.current_stage = 'Battle_end'
+        # CHECK PASSIVES
+        call check_passive_time
+        # CHECK NEG_STATS
+        call check_status_condition
         return
     else:
         call bp_player_turn

@@ -1,9 +1,18 @@
 label damage_scene:
     if effect.target == 'player':
         $ battleState.player_hp = max(0, battleState.player_hp - effect.value)
+        call show_enemy_atk
+        show text "" with vpunch
+        pause 0.25
+        call hide_enemy_atk
+        pause 0.1
     elif effect.target == 'enemy':
         $ ((battleState.enemy_team_current_stats)[0]).enemy_hp =  max(0, ((battleState.enemy_team_current_stats)[0]).enemy_hp - effect.value)
-    "" with vpunch
+        call show_player_atk
+        show text "" with vpunch
+        pause 0.25
+        call hide_player_atk
+        pause 0.1
     if crit:
         narrator "A critical hit!"
     if superEffective > 1:
@@ -130,7 +139,69 @@ label luck_effect_scene:
     return
 
 label type_effect_scene:
+    #player
+    $ type_name = effect.target_type.name
+    if effect.target == 'player':
+        $ keys = battleState.type_boost_dictionare.keys()
+        if effect.operator == '+':
+            python:
+                if not effect.target_type in keys:
+                    battleState.type_boost_dictionare[effect.target_type] = 1
+                else:
+                    battleState.type_boost_dictionare[effect.target_type] += 1
+            narrator "[player_name]'s [type_name] efficiency increased!"        
+        elif effect.operator == '-':
+            python:
+                if not effect.target_type in keys:
+                    battleState.type_boost_dictionare[effect.target_type] = -1
+                else:
+                    battleState.type_boost_dictionare[effect.target_type] -= 1
+            narrator "[player_name]'s [type_name] efficiency decreased!"  
+    #enemy
+    elif effect.target == 'enemy':
+        $ keys = ((battleState.enemy_team_current_stats)[0]).type_boost_dictionare.keys()
+        if effect.operator == '+':
+            python:
+                if not effect.target_type in keys:                    
+                    ((battleState.enemy_team_current_stats)[0]).type_boost_dictionare[effect.target_type] = 1
+                else:
+                    ((battleState.enemy_team_current_stats)[0]).type_boost_dictionare[effect.target_type] += 1
+            narrator "[enemy_name]'s [type_name] efficiency increased!"        
+        elif effect.operator == '-':
+            python:
+                if not effect.target_type in keys:
+                    ((battleState.enemy_team_current_stats)[0]).type_boost_dictionare[effect.target_type] = -1
+                else:
+                    ((battleState.enemy_team_current_stats)[0]).type_boost_dictionare[effect.target_type] -= 1
+            narrator "[enemy_name]'s [type_name] efficiency decreased!"  
     return
 
 label status_condition_effect_scene:
+    #player
+    $ condition = effect.status_condition
+    if effect.target == 'player':
+        if effect.operator == '+':
+            $ battleState.player_status_condition_dictionare[condition] = condition.duration
+            narrator "[player_name]'s was affected by [condition.name]!"        
+        elif effect.operator == '-':
+            python:
+                keys = battleState.player_status_condition_dictionare.keys()
+                if not condition in keys:
+                    renpy.say('', '[player_name] is not affected by [condition.name]!')
+                else:
+                    battleState.player_status_condition_dictionare.pop(condition)
+                    renpy.say('', '[player_name] is no longer affected by [condition.name]!')  
+    #enemy
+    elif effect.target == 'enemy':
+        if effect.operator == '+':
+            $ ((battleState.enemy_team_current_stats)[0]).status_condition_dictionare[condition] = condition.duration
+            narrator "[enemy_name]'s was affected by [condition.name]!"        
+        elif effect.operator == '-':
+            python:
+                keys = ((battleState.enemy_team_current_stats)[0]).status_condition_dictionare.keys()
+                if not condition in keys:
+                    renpy.say('', '[enemy_name] is not affected by [condition.name]!')
+                else:
+                    ((battleState.enemy_team_current_stats)[0]).status_condition_dictionare.pop(condition)
+                    renpy.say('', '[enemy_name] is no longer affected by [condition.name]!') 
     return

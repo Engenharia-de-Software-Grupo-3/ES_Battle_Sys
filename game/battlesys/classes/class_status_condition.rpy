@@ -4,17 +4,15 @@ init python:
                 Args:
                     Name
                     Activation_time {
-                        1. Turn start
-                        2. Before hit
-                        3. After hit
-                        4. Turn End
-                        5. Turn Start
-                        6. Battle Start
-                        7. Item usage
-                        8. Enemy change
-                        9. Always
+                        1. Battle_Start | Turn_start | Effect_calculate | Effect_hit | Battle_End 
+                        2. Item usage
+                        3. Enemy change
+                        4. Always
                     }
-                    Effect
+                    Effect {
+                        A function F(afflicted, battleState, battlePhase)
+                        afflicted -> 'player' | 'enemy'
+                    }
 
         """
         def __init__(self, name, activation_time, effect, duration = 3) :

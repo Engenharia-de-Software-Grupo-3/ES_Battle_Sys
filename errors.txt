@@ -2,41 +2,17 @@
 errors listed below, and try again.
 
 
-The label battle_menu is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 1:
+File "game/battlesys/labels/effect_scenes.rpy", line 155: python block expects a non-empty block.
+    python:
+           ^
 
-and File "game/battlesys/labels/menu_battle.rpy", line 1:
-label battle_menu:
+File "game/battlesys/labels/effect_scenes.rpy", line 157: expected statement.
+    ((battleState.enemy_team_current_stats)[0]).type_boost_dictionare[effect.target_type] = 1
+                                                                                          ^
 
-
-The label player_battle_menu_choice is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 3:
-
-and File "game/battlesys/labels/menu_battle.rpy", line 3:
-        menu player_battle_menu_choice:
-
-
-The label battle_skill_menu is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 34:
-
-and File "game/battlesys/labels/menu_battle.rpy", line 34:
-label battle_skill_menu:
-
-
-The label player_attack_choice is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 36:
-
-and File "game/battlesys/labels/menu_battle.rpy", line 36:
-    menu player_attack_choice:
-
-
-The label battle_change_menu is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 47:
-
-and File "game/battlesys/labels/menu_battle.rpy", line 47:
-label battle_change_menu:
-
-
-The label player_enemy_choice is defined twice, at File "game/battlesys/labels/battle_menu.rpyc", line 54:
-
-and File "game/battlesys/labels/menu_battle.rpy", line 54:
-    menu player_enemy_choice:
-
+File "game/battlesys/labels/effect_scenes.rpy", line 158: expected statement.
+    else:
+        ^
 
 Ren'Py Version: Ren'Py 8.1.1.23060707
-Thu Sep 14 23:34:49 2023
+Sun Sep 17 23:22:32 2023

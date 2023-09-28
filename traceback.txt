@@ -1,42 +1,66 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00start.rpy", line 212, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 529, in script
-    python hide:
-  File "renpy/common/00keymap.rpy", line 529, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 540, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-AttributeError: Can't get attribute 'sunTrigger' on <renpy.python.StoreModule object at 0x000000000432c2e0>
+  File "game/script.rpy", line 61, in script call
+    call prepare_battle
+  File "game/battlesys/labels/prepare_battle.rpy", line 80, in script call
+    call turn_start
+  File "game/battlesys/labels/turn_start.rpy", line 9, in script call
+    call battle_menu
+  File "game/battlesys/labels/menu_battle.rpy", line 14, in script call
+    call battle_change_menu
+  File "game/battlesys/labels/menu_battle.rpy", line 75, in script call
+    call enemy_change
+  File "game/battlesys/labels/change_fighters.rpy", line 3, in script
+    $ renpy.say('', '[battleState.enemy_team_name] sent out [(battleState.enemy_team_current_stats[0]).enemy_name]!')
+  File "game/battlesys/labels/change_fighters.rpy", line 3, in <module>
+    $ renpy.say('', '[battleState.enemy_team_name] sent out [(battleState.enemy_team_current_stats[0]).enemy_name]!')
+  File "renpy/common/00library.rpy", line 321, in say
+    who(what, interact=interact, *args, **kwargs)
+KeyError: '(battleState'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00start.rpy", line 212, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 529, in script
-    python hide:
+  File "game/script.rpy", line 61, in script call
+    call prepare_battle
+  File "game/battlesys/labels/prepare_battle.rpy", line 80, in script call
+    call turn_start
+  File "game/battlesys/labels/turn_start.rpy", line 9, in script call
+    call battle_menu
+  File "game/battlesys/labels/menu_battle.rpy", line 14, in script call
+    call battle_change_menu
+  File "game/battlesys/labels/menu_battle.rpy", line 75, in script call
+    call enemy_change
+  File "game/battlesys/labels/change_fighters.rpy", line 3, in script
+    $ renpy.say('', '[battleState.enemy_team_name] sent out [(battleState.enemy_team_current_stats[0]).enemy_name]!')
   File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "renpy/common/00keymap.rpy", line 529, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 540, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\loadsave.py", line 812, in load
-    roots, log = loads(log_data)
-  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\compat\pickle.py", line 100, in loads
-    return load(io.BytesIO(s))
-  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\compat\pickle.py", line 97, in load
-    return up.load()
-  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\compat\pickle.py", line 93, in find_class
-    return super().find_class(module, name)
-AttributeError: Can't get attribute 'sunTrigger' on <renpy.python.StoreModule object at 0x000000000432c2e0>
+  File "game/battlesys/labels/change_fighters.rpy", line 3, in <module>
+    $ renpy.say('', '[battleState.enemy_team_name] sent out [(battleState.enemy_team_current_stats[0]).enemy_name]!')
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\exports.py", line 1471, in say
+    renpy.store.say(who, what, *args, **kwargs)
+  File "renpy/common/00library.rpy", line 321, in say
+    who(what, interact=interact, *args, **kwargs)
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\character.py", line 1337, in __call__
+    what = self.prefix_suffix("what", self.what_prefix, what, self.what_suffix)
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\character.py", line 1251, in prefix_suffix
+    return (sub(prefix) + sub(body) + sub(suffix))
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\character.py", line 1231, in sub
+    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\substitutions.py", line 278, in substitute
+    s = formatter.vformat(s, (), kwargs) # type: ignore
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 165, in vformat
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 205, in _vformat
+  File "C:\Users\evald\Downloads\RenPy\renpy-8.1.1-sdk\renpy\substitutions.py", line 168, in get_field
+    obj, arg_used = super(Formatter, self).get_field(field_name, args, kwargs)
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 270, in get_field
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 227, in get_value
+KeyError: '(battleState'
 
 Windows-10-10.0.19041 AMD64
 Ren'Py 8.1.1.23060707
 CCbattleSys 1.0
-Thu Sep 14 23:42:11 2023
+Wed Sep 27 00:17:57 2023

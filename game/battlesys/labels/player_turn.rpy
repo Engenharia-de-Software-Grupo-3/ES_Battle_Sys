@@ -61,7 +61,11 @@ label bp_player_turn:
             $ inLoop = True
     # End turn -----------------------------------------------------------------------------------
     if battlePhase.phase == 2:
-        $ battlePhase.current_stage = 'Turn_end'
+        $ battlePhase.current_stage = 'Battle_end'
+        # CHECK PASSIVES
+        call check_passive_time
+        # CHECK NEG_STATS
+        call check_status_condition
         return
     else:
         call bp_enemy_turn
@@ -121,17 +125,20 @@ label player_hit_manager:
 label check_passive_time:
     $ enemy = (battleState.enemy_team_current_stats)[0]
     if (battlePhase.check_passive_time(battleState.player_passive)):
-        narrator "check player passive"
+        $ battleState.player_passive.effect(battleState, battlePhase)
     if (battlePhase.check_passive_time(battleState.enemy_team_passive)):
-        narrator "check enemy passive"
+        $ battleState.enemy_team_passive.effect(battleState, battlePhase)
     return
 
 label check_status_condition:
-    $ enemy = (battleState.enemy_team_current_stats)[0]
-    if (len(battlePhase.check_statusCondition_time(battleState.player_status_condition_dictionare)) > 0):
-        narrator "check player status_condition"
-    if (len(battlePhase.check_statusCondition_time(enemy.status_condition_dictionare)) > 0):
-        narrator "check enemy status_condition"
+    python: 
+        enemy = (battleState.enemy_team_current_stats)[0]
+        playerStatusTrigged = battlePhase.check_statusCondition_time(battleState.player_status_condition_dictionare)
+        enemyStatusTrigged = battlePhase.check_statusCondition_time(enemy.status_condition_dictionare)
+        for sp in playerStatusTrigged:
+            sp.effect('player', battleState, battlePhase)
+        for se in enemyStatusTrigged:
+            se.effect('enemy', battleState, battlePhase)
     return
 
 

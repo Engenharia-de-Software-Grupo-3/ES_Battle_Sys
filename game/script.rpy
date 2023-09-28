@@ -4,7 +4,7 @@
 # name of the character.
 
 define e = Character("Amongus")
-define s = Character("Superman")
+define s = Character("Java")
 define narrator = Character("")
 
 image space = "images/1328226.png"
@@ -17,9 +17,24 @@ image mexigus:
 image amonguns:
     "images/pngwing.com (2).png"
     zoom 0.07
-image superman:
-    "images/pngwing.com (3).png"
-    zoom 0.3
+image atkamongus:
+    "images/amg_atk.png"
+    zoom 0.11
+image dmgamongus:
+    "images/amg_dmg.png"
+    zoom 0.11
+image java:
+    "images/java 15.png"
+    zoom 0.75
+image java_battle:
+    "images/java 1.png"
+    zoom 0.65
+image java_attack:
+    "images/java 2.png"
+    zoom 0.65
+image java_dmg:
+    "images/java 4.png"
+    zoom 0.65
 
 
 # The game starts here.
@@ -34,11 +49,11 @@ label start:
 
     play music "audio/music.ogg"
 
-    show superman at truecenter
+    show java at center
 
     s "Its over amongus!"
     
-    hide superman
+    hide java
 
     show redamongus at left
 
@@ -53,6 +68,8 @@ label start:
     hide amonguns
 
     call prepare_battle
+
+    narrator "Fim de jogo" 
 
     # This ends the game.
 
