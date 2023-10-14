@@ -21,28 +21,10 @@ label define_sprite_info:
 label show_fighters:
     call define_sprite_info
     python:
-
         renpy.show(psi_name, at_list=[Position(xpos=psi_x, ypos=psi_y)])
-        renpy.show(esi_name, at_list=[Position(xpos=esi_x, ypos=esi_y)])
+        renpy.show(esi_name, at_list=[Position(xpos=esi_x, ypos=esi_y)], behind = ['player_box'])
 
     return
-
-screen hp_bars_1v1:
-    vbox:
-        spacing 20
-        xalign 0.9
-        yalign 0.7
-        xmaximum 200
-        text battleState.player_name
-        bar value battleState.player_hp range battleState.original_player.hp
-
-    vbox:
-        spacing 20
-        xalign 0.05
-        yalign 0.2
-        xmaximum 200
-        text ((battleState.enemy_team_current_stats)[0]).enemy_name
-        bar value ((battleState.enemy_team_current_stats)[0]).enemy_hp range ((battleState.enemy_team_current_stats)[0]).original_enemy.hp
 
 label show_player_atk:
     call define_sprite_info
@@ -54,7 +36,7 @@ label show_player_atk:
         renpy.hide(esi_name)
 
         renpy.show(psi_atk, at_list=[Position(xpos=psi_x, ypos=psi_y)])
-        renpy.show(esi_dmg, at_list=[Position(xpos=esi_x, ypos=esi_y)])
+        renpy.show(esi_dmg, at_list=[Position(xpos=esi_x, ypos=esi_y)], behind = ['player_box'])
 
     return
 
@@ -64,7 +46,7 @@ label hide_player_atk:
         renpy.hide(esi_dmg)
 
         renpy.show(psi_name, at_list=[Position(xpos=psi_x, ypos=psi_y)])
-        renpy.show(esi_name, at_list=[Position(xpos=esi_x, ypos=esi_y)])
+        renpy.show(esi_name, at_list=[Position(xpos=esi_x, ypos=esi_y)], behind = ['player_box'])
     return
 
 label show_enemy_atk:
@@ -77,7 +59,7 @@ label show_enemy_atk:
         renpy.hide(esi_name)
 
         renpy.show(psi_dmg, at_list=[Position(xpos=psi_x, ypos=psi_y)])
-        renpy.show(esi_atk, at_list=[Position(xpos=esi_x, ypos=esi_y)])
+        renpy.show(esi_atk, at_list=[Position(xpos=esi_x, ypos=esi_y)], behind = ['player_box'])
 
     return
 
@@ -87,5 +69,5 @@ label hide_enemy_atk:
         renpy.hide(esi_atk)
 
         renpy.show(psi_name, at_list=[Position(xpos=psi_x, ypos=psi_y)])
-        renpy.show(esi_name, at_list=[Position(xpos=esi_x, ypos=esi_y)])
+        renpy.show(esi_name, at_list=[Position(xpos=esi_x, ypos=esi_y)], behind = ['player_box'])
     return

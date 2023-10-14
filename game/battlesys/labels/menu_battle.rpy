@@ -1,34 +1,37 @@
 label battle_menu:
     while (True):
-        menu player_battle_menu_choice:
-            "Fight":
-                $ battlePhase = Battle_phase()
-                call battle_skill_menu
-                if (skill_i != -1):
-                    call start_battle_phase
-                    return
-            "Item":
-                $ nada = None
-                #call battle_item_menu
-            "Change enemy":
-                call battle_change_menu
-            "Run": 
-                narrator "No! There's no running from a Amongus battle!"
-                # exit?
+        show battle_menu_box
+        $ battle_choice = None
+        call screen battle_main_menu
+        hide battle_menu_box
+        if battle_choice == 'Fight':
+            $ battlePhase = Battle_phase()
+            call battle_skill_menu
+            if (skill_i != -1):
+                call start_battle_phase
+                return
+        elif battle_choice == 'Item':
+            narrator ':('
+        elif battle_choice == 'Enemies':
+            call battle_change_menu
+        else:
+            narrator "No! There's no running from a Amongus battle!"
 
 label battle_skill_menu:
-    $ skills = battleState.player_skill_set
-    menu player_attack_choice:
-        "[skills[0].name]" if skills[0] is not None:
-            $ skill_i = 0
-        "[skills[1].name]" if skills[1] is not None:
-            $ skill_i = 1
-        "[skills[2].name]" if skills[2] is not None:
-            $ skill_i = 2
-        "[skills[3].name]" if skills[3] is not None:
-            $ skill_i = 3
-        "Return":
-            $ skill_i = -1
+    show battle_menu_box
+    python:
+        skills = battleState.player_skill_set
+        if skills[0] is not None:
+            button0 = ("- " + skills[0].name.upper())
+        if skills[1] is not None:
+            button1 = ("- " + skills[1].name.upper())
+        if skills[2] is not None:
+            button2 = ("- " + skills[2].name.upper())
+        if skills[3] is not None:
+            button3 = ("- " + skills[3].name.upper())
+        skill_i = -1
+    call screen battle_skill_menu
+    hide battle_menu_box
     return
 
 label start_battle_phase:
@@ -52,26 +55,33 @@ label start_battle_phase:
     return
 
 label battle_change_menu:
+    show battle_menu_box
     python:
+        i = -1
+        enemy0 = battleState.enemy_team_current_stats[0]
         enemy1 = battleState.enemy_team_current_stats[1]
         enemy2 = battleState.enemy_team_current_stats[2]
         enemy3 = battleState.enemy_team_current_stats[3]
         enemy4 = battleState.enemy_team_current_stats[4]
         enemy5 = battleState.enemy_team_current_stats[5]
-    menu player_enemy_choice:
-        "[enemy1.enemy_name]" if enemy1 is not None and enemy1.enemy_hp > 0:
-            $ i = 1
-        "[enemy2.enemy_name]" if enemy2 is not None and enemy2.enemy_hp > 0:
-            $ i = 2
-        "[enemy3.enemy_name]" if enemy3 is not None and enemy3.enemy_hp > 0:
-            $ i = 3
-        "[enemy4.enemy_name]" if enemy4 is not None and enemy4.enemy_hp > 0:
-            $ i = 4
-        "[enemy5.enemy_name]" if enemy5 is not None and enemy5.enemy_hp > 0:
-            $ i = 5
-        "Return":
-            return
-    $ esi_name = (battleState.enemy_team_current_stats[0]).enemy_sprite_info.name
-    $ battleState.swap_enemy_head(i)
-    call enemy_change
+
+        if enemy0 is not None:
+            button0 = ("★ " + enemy0.enemy_name.upper())
+        if enemy1 is not None:
+            button1 = ("• " + enemy1.enemy_name.upper())
+        if enemy2 is not None:
+            button2 = ("• " + enemy2.enemy_name.upper())
+        if enemy3 is not None:
+            button3 = ("• " + enemy3.enemy_name.upper())
+        if enemy4 is not None:
+            button4 = ("• " + enemy4.enemy_name.upper())
+        if nemy5 is not None:
+            button5 = ("• " + enemy5.enemy_name.upper())
+
+    call screen battle_enemy_menu
+    hide battle_menu_box
+    if not i == -1: 
+        $ esi_name = (battleState.enemy_team_current_stats[0]).enemy_sprite_info.name
+        $ battleState.swap_enemy_head(i)
+        call enemy_change
     return

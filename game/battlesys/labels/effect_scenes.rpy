@@ -195,7 +195,7 @@ label status_condition_effect_scene:
     elif effect.target == 'enemy':
         if effect.operator == '+':
             $ ((battleState.enemy_team_current_stats)[0]).status_condition_dictionare[condition] = condition.duration
-            narrator "[enemy_name]'s was affected by [condition.name]!"        
+            narrator "[enemy_name] was affected by [condition.name]!"        
         elif effect.operator == '-':
             python:
                 keys = ((battleState.enemy_team_current_stats)[0]).status_condition_dictionare.keys()

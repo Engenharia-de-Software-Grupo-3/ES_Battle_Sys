@@ -1,41 +1,40 @@
-Wed Sep 27 21:25:14 2023
+Sat Sep 30 18:37:15 2023
 Windows-10-10.0.19041
 Ren'Py 8.1.1.23060707
  
 
-Bootstrap to the start of init.init. took 0.33s
+Bootstrap to the start of init.init. took 0.26s
 Early init. took 0.01s
-Loader init. took 0.18s
-Loading error handling. took 0.14s
-Loading script. took 0.98s
-Loading save slot metadata. took 0.13s
+Loader init. took 1.65s
+Loading error handling. took 0.40s
+Loading script. took 4.21s
+Loading save slot metadata. took 0.27s
 Loading persistent. took 0.00s
-Running init code. took 0.29s
-Loading analysis data. took 0.07s
+Running init code. took 0.43s
+Loading analysis data. took 0.09s
 Analyze and compile ATL. took 0.02s
-Reloading save slot metadata. took 0.08s
+Reloading save slot metadata. took 0.26s
 Index archives took 0.00s
-Backing up script files to 'C:\\Users\\evald\\AppData\\Roaming/RenPy/backups\\ES_Battle_Sys':
-Dump and make backups. took 0.35s
+Dump and make backups. took 0.33s
 Cleaning cache. took 0.00s
 Making clean stores. took 0.00s
 Initial gc. took 0.07s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object. took 0.02s
+Creating interface object. took 0.01s
 Cleaning stores took 0.00s
-Init translation took 0.18s
-Build styles took 0.03s
-Load screen analysis took 0.00s
-Analyze screens took 0.09s
-Save screen analysis took 0.15s
-Prepare screens took 0.47s
-Save pyanalysis. took 0.12s
-Save bytecode. took 0.22s
-Running _start took 0.01s
+Init translation took 0.15s
+Build styles took 0.02s
+Load screen analysis took 0.26s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
+Prepare screens took 0.37s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.00s
+Running _start took 0.00s
 Performance test:
-Interface start. took 1.00s
+Interface start. took 5.88s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1366, 768)
@@ -49,53 +48,15 @@ Screen sizes: virtual=(1920, 1080) physical=(1366, 705) drawable=(1366, 705)
 Maximum texture size: 4096x4096
 Cleaning stores took 0.00s
 Init translation took 0.00s
-Build styles took 0.02s
-Load screen analysis took 0.15s
+Build styles took 0.03s
+Load screen analysis took 0.12s
 Analyze screens took 0.00s
 Prepare screens took 0.00s
 Running _start took 0.00s
-Resetting cache.
-Bootstrap to the start of init.init. took 39.79s
-Early init. took 0.00s
-Loader init. took 0.19s
-Loading error handling. took 0.14s
-Loading script. took 0.86s
-Loading save slot metadata. took 0.10s
-Loading persistent. took 0.00s
-Running init code. took 0.18s
-Loading analysis data. took 0.08s
-Analyze and compile ATL. took 0.02s
-Reloading save slot metadata. took 0.09s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\evald\\AppData\\Roaming/RenPy/backups\\ES_Battle_Sys':
-Dump and make backups. took 0.37s
-Cleaning cache. took 0.00s
-Making clean stores. took 0.00s
-Initial gc. took 0.15s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object. took 0.00s
 Cleaning stores took 0.00s
-Init translation took 0.21s
+Init translation took 0.00s
 Build styles took 0.02s
-Load screen analysis took 0.00s
-Analyze screens took 0.06s
-Save screen analysis took 0.12s
-Prepare screens took 0.44s
-Save pyanalysis. took 0.09s
-Save bytecode. took 0.08s
+Load screen analysis took 0.22s
+Analyze screens took 0.00s
+Prepare screens took 0.00s
 Running _start took 0.01s
-Performance test:
-Interface start. took 0.23s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1366, 768)
-swap interval: 1 frames
-Windowed mode.
-Vendor: "b'Intel'"
-Renderer: b'Intel(R) HD Graphics 400'
-Version: b'4.4.0 - Build 20.19.15.4531'
-Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1366, 705) drawable=(1366, 705)
-Maximum texture size: 4096x4096

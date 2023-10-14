@@ -26,7 +26,7 @@ label bp_enemy_turn:
         i = 0
         inLoop = True
         enemy_name = ((battleState.enemy_team_current_stats)[0]).enemy_name
-    narrator '[enemy_name] used [skill.name].'
+    narrator 'Enemy [enemy_name] used [skill.name].'
     while (inLoop):
         $ effect = effect_list[i]
         $ battlePhase.enemy_attack_hit = False

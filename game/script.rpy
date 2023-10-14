@@ -8,9 +8,16 @@ define s = Character("Java")
 define narrator = Character("")
 
 image space = "images/1328226.png"
+
+image battle_menu_box = "images/screens/2.png"
+image battle_change_menu_box = "images/screens/2_2.png"
+
+image player_box = "images/screens/player_box.png"
+image enemy_box = "images/screens/enemy_box.png"
+
 image redamongus:
     "images/pngwing.com.png"
-    zoom 0.2
+    zoom 0.23
 image mexigus:
     "images/pngwing.com (1).png"
     zoom 0.3
@@ -23,19 +30,16 @@ image atkamongus:
 image dmgamongus:
     "images/amg_dmg.png"
     zoom 0.11
-image java:
-    "images/java 15.png"
-    zoom 0.75
-image java_battle:
-    "images/java 1.png"
-    zoom 0.65
-image java_attack:
-    "images/java 2.png"
-    zoom 0.65
-image java_dmg:
-    "images/java 4.png"
-    zoom 0.65
 
+image java = "images/java 15.png"    
+image java_battle = "images/java 1.png"
+image java_attack = "images/java 2.png"
+image java_dmg = "images/java 4.png"
+
+style battle_button_text:
+    color '#000'
+    idle_color '#000'
+    hover_color '#20558a'
 
 # The game starts here.
 
@@ -55,13 +59,16 @@ label start:
     
     hide java
 
-    show redamongus at left
+    show redamongus at left:
+        yalign 0.5
 
-    show mexigus at center
+    show mexigus at center:
+        yalign 0.5
 
-    show amonguns at right
+    show amonguns at right:
+        yalign 0.5
 
-    e "you cant defeat us."
+    e "You cant defeat us."
 
     hide redamongus
     hide mexigus

@@ -37,30 +37,30 @@ label prepare_battle:
                 ((battleState.enemy_team_current_stats)[0]).enemy_hp -= 25
                 renpy.say('', '[((battleState.enemy_team_current_stats)[0]).enemy_name] is hurt by poison!')
 
-        poison = Status_condition('Poison', 'Battle_End', poison_effect, 1)
+        poison = Status_condition('Poison', 'Battle_End', poison_effect, 3)
         podre = Status_condition_effect(1, '+', poison, 100)
         burrito.effect_list.append(podre)
 
         # Passives
         def regen(battleState, y):
-            battleState.player_hp += 100
+            battleState.player_hp = min(battleState.original_player.hp, battleState.player_hp + 67)
             renpy.say('', "[battleState.player_name]'s HP was restored by [battleState.player_passive.name]")
 
         def backstab(battleState, y):
-            battleState.player_hp -= 100
+            battleState.player_hp = max(0, battleState.player_hp - 69)
             renpy.say('', 'Enemy [battleState.enemy_team_passive.name] damaged [battleState.player_name]')
 
         underSun = Passive('Under the Sun', 'Battle_End', regen)
         backstab = Passive('Backstab', 'Battle_End', backstab)
 
         # Player
-        pxy = Sprite_info("java_battle", 0.3, 0.9, "java_attack", "java_dmg")
+        pxy = Sprite_info("java_battle", 0.5, 1.0, "java_attack", "java_dmg")
         player = Pc("Java", normal, 1000, 100, 100, 100, underSun, pxy, [heatVision, frostBreath, sunCharge, megaPunch])
         
         # Enemys
-        e1xy = Sprite_info("redamongus", 0.9, 0.45, "atkamongus", "dmgamongus")
-        e2xy = Sprite_info("mexigus", 0.9, 0.45, "atkamongus", "dmgamongus")
-        e3xy = Sprite_info("amonguns", 0.85, 0.45, "atkamongus", "dmgamongus")
+        e1xy = Sprite_info("redamongus", 0.78, 0.45, "atkamongus", "dmgamongus")
+        e2xy = Sprite_info("mexigus", 0.78, 0.45, "atkamongus", "dmgamongus")
+        e3xy = Sprite_info("amonguns", 0.74, 0.45, "atkamongus", "dmgamongus")
 
         def attackPattern(state):
             return 0
@@ -75,7 +75,9 @@ label prepare_battle:
         # Battle_state
         battleState = Battle_state(player, enemyTeam)
 
+    show player_box
+    show enemy_box
     call show_fighters
-    show screen hp_bars_1v1
+    show screen hp_bars_1v1 onlayer master
     call turn_start
     return

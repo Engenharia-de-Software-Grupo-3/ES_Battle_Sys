@@ -2,17 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/battlesys/labels/effect_scenes.rpy", line 155: python block expects a non-empty block.
-    python:
-           ^
-
-File "game/battlesys/labels/effect_scenes.rpy", line 157: expected statement.
-    ((battleState.enemy_team_current_stats)[0]).type_boost_dictionare[effect.target_type] = 1
-                                                                                          ^
-
-File "game/battlesys/labels/effect_scenes.rpy", line 158: expected statement.
-    else:
-        ^
+File "game/battlesys/screens/battle_menu.rpy", line 32: 'action' is not a keyword argument or valid child of the text statement.
+    action [SetVariable('skill_i', 0), Return()]
+          ^
 
 Ren'Py Version: Ren'Py 8.1.1.23060707
-Sun Sep 17 23:22:32 2023
+Sat Sep 30 12:58:43 2023
