@@ -27,3 +27,4 @@ init python:
             self.operator = operator
             self.accurace = accurace
             self.class_name = 'Status_condition_effect'
+

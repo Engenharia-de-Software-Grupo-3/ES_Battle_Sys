@@ -87,3 +87,4 @@ init python:
                 self.player_status_condition_dictionare.pop(venom)
                 renpy.say('', saida)
   
+
